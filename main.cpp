@@ -27,7 +27,7 @@ int main() {
     readDatafromfile(recordStud, i);
     Display(recordStud, i);
 
-    return 0;
+    //return 0; 
 }
 
 void readDatafromfile(studInfo recordStud[], int &i) {
