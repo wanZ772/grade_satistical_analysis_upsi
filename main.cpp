@@ -182,6 +182,10 @@ string total_grades[i] = {};
     }
     cout << "\n\nGrade" << setw(47) << "Number of Students" << endl;
     for (auto key : duplicate_grades)  {
-        cout << key.first << setw(47) << key.second << endl;
+        if (key.first.length() != 1) {
+        cout << key.first << setw(40) << key.second << endl;
+        }   else    {
+            cout << key.first << setw(41) << key.second << endl;
+        }
     }
 }
