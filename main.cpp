@@ -18,7 +18,8 @@ struct studInfo {
 
 void readDatafromfile(studInfo recordStud[], int &i);
 void calculateGrade(studInfo &student);
-void Display(studInfo recordStud[], int i);
+// void Display(studInfo recordStud[], int i);
+void Display(studInfo *, int i);
 
 int main() {
     studInfo recordStud[SIZE];
@@ -157,32 +158,30 @@ string total_grades[i] = {};
     for (int j = 0; j < i; j++) {
         total_grades[j] = recordStud[j].grade;
     }
-    string duplicate_grades_key[10] =  {"A", "A-", "B+", "B", "B-", "C+", "C", "D+", "D", "F"};
-    int duplicate_grades_value[10] = {};
-    // map<string, int> duplicate_grades= {
-    //     {"A", 0},
-    //     {"A-",0},
-    //     {"B+",0},
-    //     {"B",0},
-    //     {"B-",0},
-    //     {"C",0},
-    //     {"C+",0},
-    //     {"D+",0},
-    //     {"D",0},
-    //     {"F",0},
-    // };
-    for (int grade_id = 0; grade_id < 10; grade_id++)  {
+    map<string, int> duplicate_grades= {
+        {"A", 0},
+        {"A-",0},
+        {"B+",0},
+        {"B",0},
+        {"B-",0},
+        {"C",0},
+        {"C+",0},
+        {"D+",0},
+        {"D",0},
+        {"F",0},
+    };
+    for (auto key : duplicate_grades)  {
         int duplicate_times = 1;
         for (int j = 0; j < i; j++) {
-            if (recordStud[j].grade == duplicate_grades_key[grade_id])  {
-                duplicate_grades_value[grade_id] = duplicate_times;
+            if (recordStud[j].grade == key.first)  {
+                duplicate_grades[key.first] = duplicate_times;
                 duplicate_times++;
             }
             // duplicate_times = 0;
         }
     }
     cout << "\n\nGrade" << setw(47) << "Number of Students" << endl;
-    for (int grade_id = 0; grade_id < 10; grade_id++)  {
-        cout << duplicate_grades_key[grade_id] << setw(47) << duplicate_grades_value[grade_id] << endl;
+    for (auto key : duplicate_grades)  {
+        cout << key.first << setw(47) << key.second << endl;
     }
 }
